@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "4701:4701"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - frontend
+  
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"  # Exposing port 80 for production (nginx)
+    environment:
+      -
